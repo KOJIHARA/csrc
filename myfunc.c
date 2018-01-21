@@ -1,4 +1,19 @@
-
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<ctype.h>
+#include<math.h>
+#include<stdbool.h>
+#include<conio.h>
+typedef unsigned char UCHAR;
+typedef unsigned short USHORT;
+typedef unsigned long ULONG;
+typedef signed char CHAR;
+typedef signed short SHORT;
+typedef signed long LONG;
+#define NUMOF(ary) (sizeof(ary) / sizeof(ary[0]))
+#define max(a, b) ((a) > (b) ? (a) : (b))
+#define min(a, b) ((a) < (b) ? (a) : (b))
 /*==================================================*/
 // キー入力関数
 // key_input()
@@ -124,7 +139,7 @@ void reverse_array(UCHAR *dat, ULONG num, ULONG item_siz)
  *  @param[in]  siz          配列のサイズ
  *  @param[in]  asc          ON:昇順(新しい順), OFF:降順(古い順)
  */
-void sort_ringbuf(UCHAR *dat, ULONG idx_old, ULONG num, ULONG siz, E_ONOFF asc)
+void sort_ringbuf(UCHAR *dat, ULONG idx_old, ULONG num, ULONG siz, bool asc)
 {
     ULONG item_siz;
     
@@ -134,7 +149,7 @@ void sort_ringbuf(UCHAR *dat, ULONG idx_old, ULONG num, ULONG siz, E_ONOFF asc)
     /* 降順に並び替える */
     reverse_array((UCHAR*)&dat[0],                  idx_old,       item_siz);
     reverse_array((UCHAR*)&dat[item_siz * idx_old], num - idx_old, item_siz);
-    if(asc == ON)
+    if(asc)
     {
         /* 昇順に並び替える */
         reverse_array((UCHAR*)&dat[0], num, item_siz);
